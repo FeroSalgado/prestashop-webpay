@@ -58,10 +58,10 @@ class WebPay extends PaymentModule {
         if (!$this->active)
             return;
 
+        if(version_compare(_PS_VERSION_, '1.6') >= 0)
+            $params['order'] = $params['objOrder'];
+        
         $state = $params['order']->getCurrentState();
-        //echo "$state;";
-
-        //echo $state;
 
         $this->smarty->assign(array(
              'shop_name' => $this->context->shop->name,
